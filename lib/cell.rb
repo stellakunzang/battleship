@@ -41,10 +41,11 @@ class Cell
   def render(show = false)
     #add optional argument which reveals hidden ships
     if fired_upon == false
-      if show == true && empty? = false
+      if show == true && empty? == false
         "S"
       else
         "."
+      end 
     elsif fired_upon == true && ship.hit == false
       "M"
     elsif fired_upon == true && ship.hit == true
