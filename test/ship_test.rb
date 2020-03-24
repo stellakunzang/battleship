@@ -6,7 +6,7 @@ require 'pry';
 
 class ShipTest < Minitest::Test
 
-  def test_ship_exsist
+  def test_ship_exists
 
     cruiser = Ship.new('cruiser', 3)
 
@@ -17,8 +17,9 @@ class ShipTest < Minitest::Test
 
     cruiser = Ship.new('cruiser', 3)
 
-    assert_equal 'cruiser', cruiser.ship_name
+    assert_equal 'cruiser', cruiser.name
     assert_equal 3, cruiser.length
+    assert_equal 3, cruiser.health
   end
 
   def test_ship_health
@@ -28,14 +29,15 @@ class ShipTest < Minitest::Test
     assert_equal 3, cruiser.health
   end
 
-  def test_if_ship_was_hit
+
+  def test_it_loses_health_if_ship_hit
 
     cruiser = Ship.new('cruiser', 3)
 
     assert_equal 2, cruiser.hit
   end
 
-  def test_if_ship_sunk
+  def test_if_ship_sunk_true
 
     cruiser = Ship.new('cruiser', 3)
     cruiser.hit
@@ -45,4 +47,12 @@ class ShipTest < Minitest::Test
     assert_equal true, cruiser.sunk?
   end
 
+  def test_if_ship_sunk_false
+
+    cruiser = Ship.new('cruiser', 3)
+    cruiser.hit
+    cruiser.hit
+
+    assert_equal false, cruiser.sunk?
+  end
 end
