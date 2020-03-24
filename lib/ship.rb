@@ -28,5 +28,5 @@ class Ship
     end
   end
 
-  binding.pry
+
 end
