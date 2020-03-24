@@ -38,9 +38,13 @@ class Cell
     end
   end
 
-  def render
+  def render(show = false)
+    #add optional argument which reveals hidden ships
     if fired_upon == false
-      "."
+      if show == true && empty? = false
+        "S"
+      else
+        "."
     elsif fired_upon == true && ship.hit == false
       "M"
     elsif fired_upon == true && ship.hit == true
@@ -50,6 +54,6 @@ class Cell
     end
     # it takes an optional boolean argument but I don't understand why
     # this method displays whether the cell has been fired upon, whether it contains a ship, etc.
-    # it pull p to the screen based on what criteria it meets
+    #
   end
 end
