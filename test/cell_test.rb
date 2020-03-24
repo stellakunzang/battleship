@@ -61,5 +61,13 @@ class CellTest < Minitest::Test
     cell.fire_upon
     assert_equal "H", cell.render
   end
-  
+
+  def test_it_can_render_with_optional_argument
+    skip
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+
+    assert_equal "S", cell.render(true)
+  end
 end
