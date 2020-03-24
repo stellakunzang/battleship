@@ -46,18 +46,17 @@ class CellTest < Minitest::Test
     cell.fire_upon
 
     assert_equal true, cell.fired_upon?
-    assert_equal 2, ship.health
+    assert_equal 2, cruiser.health
   end
 
   def test_it_can_render
-    skip 
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
 
     assert_equal ".", cell.render
     cell.fire_upon
-binding.pry
+
     assert_equal "H", cell.render
   end
 
