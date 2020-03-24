@@ -47,7 +47,7 @@ class CellTest < Minitest::Test
     cell.place_ship(cruiser)
     cell.fire_upon
 
-    assert_equal true, fired_upon
+    assert_equal true, fired_upon?
   end
 
   def test_it_can_render
@@ -59,6 +59,7 @@ class CellTest < Minitest::Test
     assert_equal ".", cell.render
 
     cell.fire_upon
+
     assert_equal "H", cell.render
   end
 
