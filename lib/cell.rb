@@ -45,10 +45,11 @@ class Cell
         "S"
       else
         "."
-      end 
-    elsif fired_upon == true && ship.hit == false
+      end
+    elsif fired_upon == true && ship.health == ship.length
       "M"
-    elsif fired_upon == true && ship.hit == true
+    elsif fired_upon == true && ship.length > ship.health < 0
+      # not sure if this combination of conditionals will work 
       "H"
     elsif fired_upon == true && ship.sunk? == true
       "X"
