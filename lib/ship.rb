@@ -11,10 +11,6 @@ class Ship
     @health = length
   end
 
-  def health
-    @health
- end
-
   def hit
     @health -= 1
   end
@@ -26,6 +22,4 @@ class Ship
       false
     end
   end
-
-
 end
