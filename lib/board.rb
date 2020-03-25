@@ -44,12 +44,15 @@ class Board
 
 
   def valid_placement?(ship, cells)
-    if ship.length == cells.length
+    if ship.length == cells.length && cells.empty? == true
       true
     else
       false
     end
+
   end
+
+
 
 
 end
