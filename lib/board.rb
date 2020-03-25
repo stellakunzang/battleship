@@ -1,6 +1,7 @@
 require 'pry';
 
-class Board :cells
+class Board
+  attr_reader :cells
 
   def initialize
     @cells = cells
@@ -40,6 +41,9 @@ class Board :cells
       false
     end
   end
+
+  
+
 
 
 end
