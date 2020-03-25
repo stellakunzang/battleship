@@ -14,6 +14,8 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_has_attributes
+    board = Board.new
 
+    assert_equal 16, board.cells.length
   end
-end 
+end
