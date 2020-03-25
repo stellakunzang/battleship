@@ -1,3 +1,5 @@
+require 'pry';
+
 class Board :cells
 
   def initialize
@@ -6,6 +8,7 @@ class Board :cells
 
   def cells
     cells = {}
+
     x_axis = ("A".."D").to_a
     y_axis = ("1".."4").to_a
 
@@ -19,6 +22,7 @@ class Board :cells
     values = []
     keys.each do |key|
       values << Cell.new(key)
+
     end
 
     keys.each do |key|
@@ -28,4 +32,14 @@ class Board :cells
     end
     cells
   end
+
+  def valid_coordinate?(cell)
+    if cells.include?(cell)
+      true
+    else
+      false
+    end
+  end
+
+
 end
