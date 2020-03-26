@@ -60,6 +60,8 @@ class CellTest < Minitest::Test
     assert_equal "H", cell.render
   end
 
+  #write tests for H and X
+
   def test_it_can_render_with_optional_argument
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
