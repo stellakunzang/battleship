@@ -1,7 +1,6 @@
 require 'pry';
 
-class Board
-  attr_reader :cells
+class Board :cells
 
   def initialize
     @cells = cells
@@ -44,12 +43,14 @@ class Board
 
 
   def valid_placement?(ship, cells)
-    if ship.length == cells.length && cells.empty? == true
+     # @cells["A1"].empty find way to iterate through the cells array
+     #add it into cell keys
+    if ship.length == cells.length && @cells["A1"].empty == true
       true
     else
       false
     end
-
+    # binding.pry
   end
 
 
