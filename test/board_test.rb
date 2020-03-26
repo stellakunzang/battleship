@@ -17,12 +17,14 @@ class BoardTest < Minitest::Test
     board = Board.new
 
     # asserting length is problematic because it can fluctuate; need to test hash itself
+    # test that a particular key is associated with the expected value
   end
 
   def test_it_can_render_default
     board = Board.new
     board.render
     # use string methods to test that the basic board at start of game is...
+    #since it will always start 1234 A A1 can we test that?
 
   end
 
