@@ -56,11 +56,17 @@ class Board :cells
 
   def cells_are_in_order(cells)
     # binding.pry
+    board_values = [1,2,3,4]
     value = []
     cells.each do |cell|
       value << cell.delete("A")
     end
-    value.include? == value.each_cons(4)
+    value.map(&:to_i)
+
+    board_values.each_cons(cells.length)
+
+    # value.map(&:to_i).any?{board_values.each_cons(cells.length)}
+    binding.pry
   end
 
 
