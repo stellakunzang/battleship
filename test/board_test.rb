@@ -40,8 +40,8 @@ class BoardTest < Minitest::Test
 
     board = Board.new
 
-    assert_equal true, board.cells_are_in_order(["A1", "A2", "A3"])
     assert_equal false, board.cells_are_in_order(["A1", "A2", "A4"])
+    assert_equal true, board.cells_are_in_order(["A1", "A2", "A3"])
   end
 
 
