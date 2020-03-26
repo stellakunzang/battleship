@@ -34,7 +34,7 @@ class Board :cells
   end
 
   def valid_coordinate?(cell)
-    if cells.include?(cell)
+    if @cells.include?(cell)
       true
     else
       false
@@ -42,15 +42,34 @@ class Board :cells
   end
 
 
+  def is_cell_empty?(cells)
+    values = []
+    cells.each do |cell|
+      values << @cells[cell].empty
+    end
+    if values.include?(false)
+      false
+    else
+      true
+    end
+  end
+
+  def cells_are_in_order(cells)
+    # binding.pry
+    value = []
+    cells.each do |cell|
+      value << cell.delete("A")
+    end
+    value.include? == value.each_cons(4)
+  end
+
+
   def valid_placement?(ship, cells)
-     # @cells["A1"].empty find way to iterate through the cells array
-     #add it into cell keys
-    if ship.length == cells.length && @cells["A1"].empty == true
+    if ship.length == cells.length && is_cell_empty?(cells) == true
       true
     else
       false
     end
-    # binding.pry
   end
 
 
