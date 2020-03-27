@@ -1,6 +1,6 @@
 class Cell
 
-  attr_reader :coordinate, :empty, :ship, :fired_upon
+  attr_reader :coordinate, :empty, :ship
 
   def initialize(coordinate)
     @coordinate = coordinate
@@ -45,5 +45,7 @@ class Cell
         "X"
       end
     end
+    #can refactor with guard statements!
+    #or more complex condition statements
   end
 end
