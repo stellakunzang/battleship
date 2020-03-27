@@ -80,6 +80,15 @@ class Board
     # (numbers[0]..numbers[-1]).to_a == numbers
   end
 
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates) == true
+      coordinates.each do |coordinate|
+        cells[coordinate].place_ship(ship)
+    end
+  end
+
+
+
   def render(show = false)
     if show == false
       puts "  1 2 3 4 \n" +
@@ -95,4 +104,5 @@ class Board
           "D #{cells["D1"].render(true)} #{cells["D2"].render(true)} #{cells["D3"].render(true)} #{cells["D4"].render(true)} \n"
     end
   end
+ end
 end
