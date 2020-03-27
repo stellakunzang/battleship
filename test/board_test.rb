@@ -79,13 +79,11 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_place_ships
+    skip
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-
-
-
-    assert_equal :render, board.place(cruiser, ["A1", "A2", "A3"])
+  
   end
 
   def test_it_can_render_default
@@ -95,7 +93,7 @@ class BoardTest < Minitest::Test
 
     # use string methods to test that the basic board at start of game is...
     #since it will always start 1234 A A1 can we test that?
-
+    assert_equal
   end
 
   def test_it_can_render_show_true
@@ -123,6 +121,5 @@ class BoardTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 1)
     cruiser.hit
     board.render
-
   end
 end
