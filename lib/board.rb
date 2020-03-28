@@ -78,7 +78,10 @@ end
   def place(ship, coordinates)
     # if valid_placement?(ship, coordinates) == true
       coordinates.each do |coordinate|
+        # cells[coordinate].empty = false
+        # cells[coordinate].ship = ship
         cells[coordinate].place_ship(ship)
+        binding.pry
 
         # binding.pry
     end
