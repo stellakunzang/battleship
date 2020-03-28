@@ -33,15 +33,14 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    ship.length == coordinates.length && valid_coordinate_array?(coordinates) == true && cells_not_empty?(coordinates) == false
+    ship.length == coordinates.length && valid_coordinate_array?(coordinates) == true && cells_empty?(coordinates) == true
   end
 
 
-  def cells_not_empty?(coordinates)
-    overlap = coordinates.all? do |coordinate|
-      coordinate.empty?
+  def cells_empty?(coordinates)
+    coordinates.all? do |coordinate|
+      cells[coordinate].empty?
     end
-    overlap
   end
 
   def valid_coordinate_array?(coordinates)
