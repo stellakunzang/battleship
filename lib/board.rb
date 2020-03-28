@@ -80,13 +80,16 @@ class Board
   end
 
   def place(ship, coordinates)
+
     coordinates.each do |coordinate|
       cell = cells[coordinate]
       cell.place_ship(ship)
+
     end
     #need to figure out how to return this
-    #the function works but I cant return the actuall correct array 
-    binding.pry
+    #the function works but I cant return the actuall correct array
+    #when I run it through the interation patern it still wont work
+
   end
 
 
