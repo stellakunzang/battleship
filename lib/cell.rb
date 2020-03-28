@@ -23,9 +23,11 @@ class Cell
   end
 
   def fire_upon
-    @fired_upon = true
-    if @ship == ship
+    if @ship == nil
+      @fired_upon = true
+    elsif @ship == ship
       ship.hit
+      @fired_upon = true
     end
   end
 
@@ -37,12 +39,14 @@ class Cell
         "."
       end
     elsif @fired_upon == true
-      if ship.health == ship.length
+      if @ship = ship
+        if ship.length > ship.health && ship.sunk? == false
+          "H"
+        elsif ship.sunk? == true
+          "X"
+        end 
+      else
         "M"
-      elsif ship.length > ship.health && ship.sunk? == false
-        "H"
-      elsif ship.sunk? == true
-        "X"
       end
     end
     #can refactor with guard statements!
