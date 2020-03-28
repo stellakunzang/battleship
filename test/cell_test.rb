@@ -50,7 +50,7 @@ class CellTest < Minitest::Test
     assert_equal 2, cruiser.health
   end
 
-  def test_it_can_render
+  def test_it_can_render_empty_hit_sunk
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
@@ -59,9 +59,37 @@ class CellTest < Minitest::Test
     cell.fire_upon
 
     assert_equal "H", cell.render
+    cell.fire_upon
+    cell.fire_upon
+    assert_equal "X", cell.render
   end
 
-  #write tests for H and X
+  def test_it_can_render_empty_hit_sunk
+    cell1 = Cell.new("B4")
+    cell2 = Cell.new("A1")
+    cruiser = Ship.new("Cruiser", 3)
+    cell1.place_ship(cruiser)
+    cell1.fire_upon
+
+    assert_equal "H", cell1.render
+    cell2.fire_upon
+
+    assert_equal "M", cell2.render
+  end
+
+  def test_it_can_render_miss
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+
+    assert_equal ".", cell.render
+    cell.fire_upon
+
+    assert_equal "H", cell.render
+    cell.fire_upon
+    cell.fire_upon
+    assert_equal "X", cell.render
+  end
 
   def test_it_can_render_with_optional_argument
     cell = Cell.new("B2")

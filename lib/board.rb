@@ -1,6 +1,3 @@
-require './lib/cell'
-require './lib/ship'
-
 class Board
   attr_reader :cells
 
@@ -20,13 +17,11 @@ class Board
       end
     end
 
-  coordinates.each do |coordinate|
-    cell = Cell.new(coordinate)
-      cells_hash[coordinate] = cell
-
+    coordinates.each do |coordinate|
+      cell = Cell.new(coordinate)
+        cells_hash[coordinate] = cell
     end
     cells_hash
-
   end
 
   def valid_coordinate?(coordinate)
@@ -38,7 +33,14 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    ship.length == coordinates.length && valid_coordinate_array?(coordinates) == true
+    ship.length == coordinates.length && valid_coordinate_array?(coordinates) == true && cells_empty?(coordinates) == true
+  end
+
+
+  def cells_empty?(coordinates)
+    coordinates.all? do |coordinate|
+      cells[coordinate].empty?
+    end
   end
 
   def valid_coordinate_array?(coordinates)
@@ -69,31 +71,17 @@ class Board
 
   def consecutive_letters?(coordinates)
     (collect_letters(coordinates)[0].ord..collect_letters(coordinates)[-1].ord).to_a == collect_letters(coordinates).map { |letter| letter.ord }
-    # do I need to sort for the first part?
-    # (letters[0].ord..letters[-1].ord).to_a == letters.map { |letter| letter.ord }
   end
 
   def consecutive_numbers?(coordinates)
     (collect_numbers(coordinates)[0]..collect_numbers(coordinates)[-1]).to_a == collect_numbers(coordinates)
-    # do I need to sort for the first part?
-    # (numbers[0]..numbers[-1]).to_a == numbers
   end
 
   def place(ship, coordinates)
-
     coordinates.each do |coordinate|
-      cell = cells[coordinate]
-      cell.place_ship(ship)
-
+      coordinate.place_ship(ship)
     end
-    #need to figure out how to return this
-    #the function works but I cant return the actuall correct array
-    #when I run it through the interation patern it still wont work
-
   end
-
-
-
 
   def render(show = false)
     if show == false
