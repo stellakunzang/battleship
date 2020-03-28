@@ -7,6 +7,7 @@ require "pry"
 class CellTest < Minitest::Test
 
   def test_it_exists
+
     cell = Cell.new("B2")
 
     assert_instance_of Cell, cell
