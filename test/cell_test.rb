@@ -7,15 +7,16 @@ require "pry"
 class CellTest < Minitest::Test
 
   def test_it_exists
-    cell = Cell.new("B4")
+
+    cell = Cell.new("B2")
 
     assert_instance_of Cell, cell
   end
 
   def test_it_has_attributes
-    cell = Cell.new("B4")
+    cell = Cell.new("B2")
 
-    assert_equal "B4", cell.coordinate
+    assert_equal "B2", cell.coordinate
   end
 
   def test_it_can_detect_empty_cell
@@ -25,7 +26,7 @@ class CellTest < Minitest::Test
   end
 
   def test_it_can_detect_no_ship_on_empty_cell
-    cell = Cell.new("B4")
+    cell = Cell.new("B2")
 
     assert_nil cell.ship
   end
@@ -63,7 +64,7 @@ class CellTest < Minitest::Test
   #write tests for H and X
 
   def test_it_can_render_with_optional_argument
-    cell = Cell.new("B4")
+    cell = Cell.new("B2")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
 

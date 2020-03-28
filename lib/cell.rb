@@ -1,6 +1,8 @@
+require './lib/board'
+require './lib/ship'
 class Cell
 
-  attr_reader :coordinate, :empty, :ship
+  attr_reader :coordinate, :ship, :empty
 
   def initialize(coordinate)
     @coordinate = coordinate
@@ -18,17 +20,14 @@ class Cell
     @ship = ship
   end
 
-  def fired_upon?
-    @fired_upon
-  end
-
   def fire_upon
-    @fired_upon = true
-    if @ship == ship
+    if @ship == nil
+      @fired_upon = true
+    elsif @ship == ship
       ship.hit
+      @fired_upon = true
     end
   end
-
   def render(show = false)
     if @fired_upon == false
       if show == true && empty? == false
@@ -37,15 +36,15 @@ class Cell
         "."
       end
     elsif @fired_upon == true
-      if ship.health == ship.length
+      if @ship = ship
+        if ship.length > ship.health && ship.sunk? == false
+          "H"
+        elsif ship.sunk? == true
+          "X"
+        end
+      else
         "M"
-      elsif ship.length > ship.health && ship.sunk? == false
-        "H"
-      elsif ship.sunk? == true
-        "X"
       end
     end
-    #can refactor with guard statements!
-    #or more complex condition statements
   end
 end

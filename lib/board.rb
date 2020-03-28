@@ -1,3 +1,6 @@
+require './lib/cell'
+require './lib/ship'
+
 class Board
   attr_reader :cells
 
@@ -6,28 +9,24 @@ class Board
   end
 
   def cells
-    cells = {}
+    cells_hash = {}
     x_axis = ("A".."D").to_a
     y_axis = ("1".."4").to_a
 
-    keys = []
+    coordinates = []
     x_axis.each do |x|
       y_axis.each do |y|
-        keys << (x + y)
+        coordinates << (x + y)
       end
     end
 
-    values = []
-    keys.each do |key|
-      values << Cell.new(key)
-    end
+  coordinates.each do |coordinate|
+    cell = Cell.new(coordinate)
+      cells_hash[coordinate] = cell
 
-    keys.each do |key|
-      values.each do |value|
-        cells[key] = value
-      end
     end
-    cells
+    cells_hash
+
   end
 
   def valid_coordinate?(coordinate)
@@ -80,6 +79,22 @@ class Board
     # (numbers[0]..numbers[-1]).to_a == numbers
   end
 
+  def place(ship, coordinates)
+
+    coordinates.each do |coordinate|
+      cell = cells[coordinate]
+      cell.place_ship(ship)
+
+    end
+    #need to figure out how to return this
+    #the function works but I cant return the actuall correct array
+    #when I run it through the interation patern it still wont work
+
+  end
+
+
+
+
   def render(show = false)
     if show == false
       puts "  1 2 3 4 \n" +
@@ -95,4 +110,4 @@ class Board
           "D #{cells["D1"].render(true)} #{cells["D2"].render(true)} #{cells["D3"].render(true)} #{cells["D4"].render(true)} \n"
     end
   end
-end
+ end
