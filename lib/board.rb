@@ -1,4 +1,5 @@
 require './lib/cell'
+require './lib/ship'
 
 class Board
   attr_reader :cells
@@ -13,17 +14,20 @@ class Board
     y_axis = ("1".."4").to_a
 
     coordinates = []
-  x_axis.each do |x|
-    y_axis.each do |y|
-      coordinates << (x + y)
+    x_axis.each do |x|
+      y_axis.each do |y|
+        coordinates << (x + y)
+      end
     end
-  end
+
   coordinates.each do |coordinate|
     cell = Cell.new(coordinate)
       cells_hash[coordinate] = cell
+
+    end
+    cells_hash
+
   end
-  cells_hash
-end
 
   def valid_coordinate?(coordinate)
     if cells[coordinate] == nil
@@ -76,16 +80,15 @@ end
   end
 
   def place(ship, coordinates)
-    # if valid_placement?(ship, coordinates) == true
-      coordinates.each do |coordinate|
-        # cells[coordinate].empty = false
-        # cells[coordinate].ship = ship
-        cells[coordinate].place_ship(ship)
-        binding.pry
-
-        # binding.pry
+    coordinates.each do |coordinate|
+      cell = cells[coordinate]
+      cell.place_ship(ship)
     end
+    #need to figure out how to return this
+    #the function works but I cant return the actuall correct array 
+    binding.pry
   end
+
 
 
 

@@ -2,8 +2,7 @@ require './lib/board'
 require './lib/ship'
 class Cell
 
-  attr_reader :coordinate
-  attr_accessor :ship, :empty
+  attr_reader :coordinate, :ship, :empty
 
   def initialize(coordinate)
     @coordinate = coordinate
@@ -19,7 +18,6 @@ class Cell
   def place_ship(ship)
     @empty = false
     @ship = ship
-
   end
 
   def fire_upon
@@ -49,4 +47,4 @@ class Cell
       end
     end
   end
-end 
+end
