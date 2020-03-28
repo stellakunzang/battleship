@@ -6,28 +6,22 @@ class Board
   end
 
   def cells
-    cells = {}
+    cells_hash = {}
     x_axis = ("A".."D").to_a
     y_axis = ("1".."4").to_a
 
-    keys = []
+    coordinates = []
     x_axis.each do |x|
       y_axis.each do |y|
-        keys << (x + y)
+        coordinates << (x + y)
       end
     end
 
-    values = []
-    keys.each do |key|
-      values << Cell.new(key)
+    coordinates.each do |coordinate|
+      cell = Cell.new(coordinate)
+        cells_hash[coordinate] = cell
     end
-
-    keys.each do |key|
-      values.each do |value|
-        cells[key] = value
-      end
-    end
-    cells
+    cells_hash
   end
 
   def valid_coordinate?(coordinate)
