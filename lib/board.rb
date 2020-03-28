@@ -1,3 +1,6 @@
+require './lib/cell'
+require './lib/ship'
+
 class Board
   attr_reader :cells
 
@@ -74,6 +77,22 @@ class Board
     # (numbers[0]..numbers[-1]).to_a == numbers
   end
 
+  def place(ship, coordinates)
+
+    coordinates.each do |coordinate|
+      cell = cells[coordinate]
+      cell.place_ship(ship)
+
+    end
+    #need to figure out how to return this
+    #the function works but I cant return the actuall correct array
+    #when I run it through the interation patern it still wont work
+
+  end
+
+
+
+
   def render(show = false)
     if show == false
       puts "  1 2 3 4 \n" +
@@ -89,4 +108,4 @@ class Board
           "D #{cells["D1"].render(true)} #{cells["D2"].render(true)} #{cells["D3"].render(true)} #{cells["D4"].render(true)} \n"
     end
   end
-end
+ end

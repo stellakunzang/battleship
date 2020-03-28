@@ -1,6 +1,8 @@
+require './lib/board'
+require './lib/ship'
 class Cell
 
-  attr_reader :coordinate, :empty, :ship
+  attr_reader :coordinate, :ship, :empty
 
   def initialize(coordinate)
     @coordinate = coordinate
@@ -18,10 +20,6 @@ class Cell
     @ship = ship
   end
 
-  def fired_upon?
-    @fired_upon
-  end
-
   def fire_upon
     if @ship == nil
       @fired_upon = true
@@ -30,7 +28,6 @@ class Cell
       @fired_upon = true
     end
   end
-
   def render(show = false)
     if @fired_upon == false
       if show == true && empty? == false
@@ -44,12 +41,10 @@ class Cell
           "H"
         elsif ship.sunk? == true
           "X"
-        end 
+        end
       else
         "M"
       end
     end
-    #can refactor with guard statements!
-    #or more complex condition statements
   end
 end
