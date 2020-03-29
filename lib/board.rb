@@ -7,7 +7,6 @@ class Board
   end
 
   def build_cells
-    puts "I AM BEING CALLED!"
     cells_hash = {}
     x_axis = ("A".."D").to_a
     y_axis = ("1".."4").to_a
@@ -21,7 +20,6 @@ class Board
 
     coordinates.each do |coordinate|
       cell = Cell.new(coordinate)
-      puts "I AM BUILDING A NEW CELL!"
         cells_hash[coordinate] = cell
     end
     cells_hash
