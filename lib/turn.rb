@@ -21,16 +21,16 @@ class Turn
   end
 
   def commence_player_turn
-    p "============Computer Board========="
-    p @computer_board.render
-    p "============Player Board========="
-    p @user_board.render(true)
-    p "~*~*~*~Take A Turn~*~*~*~"
+    puts "============Computer Board============"
+    puts @computer_board.render
+    puts "============Player Board============"
+    puts @user_board.render(true)
+    puts "~*~*~*~*~*~*~Take A Turn~*~*~*~*~*~*~"
     get_coordinate
   end
 
   def get_coordinate
-    p "Enter the coordinate for your shot: "
+    puts "Enter the coordinate for your shot: "
     coordinate = gets.chomp
     validate_coordinate(coordinate)
   end
@@ -39,7 +39,7 @@ class Turn
     if @player_cells_fired_upon.include?(coordinate)
       warn_player_repeat_target
     elsif @user_board.valid_coordinate?(coordinate) == false
-      p "Please enter a valid coordinate: "
+      puts "Please enter a valid coordinate: "
       coordinate = gets.chomp
       validate_coordinate(coordinate)
     elsif @user_board.valid_coordinate?(coordinate) == true
@@ -48,7 +48,7 @@ class Turn
   end
 
   def warn_player_repeat_target
-    p "You have already fired on that cell. Try again."
+    puts "You have already fired on that cell. Try again."
     get_coordinate
   end
 
@@ -64,17 +64,16 @@ class Turn
     @user_board.cells[coordinate].fire_upon
     @computer_target_coordinates.shift
     report_computer_turn_results(coordinate)
-    binding.pry
     #check for winner
     commence_player_turn
   end
 
   def report_player_turn_results(coordinate)
-    p "Your shot on #{coordinate} #{player_turn_result(coordinate)}."
+    puts "Your shot on #{coordinate} #{player_turn_result(coordinate)}."
   end
 
   def report_computer_turn_results(coordinate)
-    p "My shot on #{coordinate} #{computer_turn_result(coordinate)}."
+    puts "My shot on #{coordinate} #{computer_turn_result(coordinate)}."
   end
 
   def computer_turn_result(coordinate)
@@ -96,6 +95,4 @@ class Turn
       "sunk a ship"
     end
   end
-
-
 end
