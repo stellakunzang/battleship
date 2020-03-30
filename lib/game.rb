@@ -5,12 +5,10 @@ require './lib/ship'
 
  class Game
 
-  attr_reader :player, :coordinates_array
+  attr_reader :player
 
   def initialize(player)
     @player = player
-    @coordinates_array = []
-
   end
 
   def main_menu
@@ -18,19 +16,6 @@ require './lib/ship'
     p "Welcome to BATTLESHIP"
     p "Enter p to play. Enter q to quit."
     reply = gets.chomp.downcase
-  end
-
-  def create_coordinates_array
-    x_axis = ("A".."D").to_a
-      y_axis = ("1".."4").to_a
-      coordinates = []
-      x_axis.each do |x|
-        y_axis.each do |y|
-          coordinates << (x + y)
-        end
-      end
-      @coordinates_array << coordinates
-      @coordinates_array.flatten.uniq
   end
 
 
@@ -56,12 +41,12 @@ require './lib/ship'
       y_axis.each do |y|
           coordinates_array << coord + y
         end
+
           if random_number.even?
             coordinates_array.pop
           else
             coordinates_array.shift
           end
-        p coordinates_array
     else
       coordinates_array = []
       random_number = rand(1..50)
@@ -73,22 +58,37 @@ require './lib/ship'
       x_axis.each do |x|
           coordinates_array << x + coord
         end
+
           if random_number.even?
             coordinates_array.pop
           else
             coordinates_array.shift
           end
-      p coordinates_array
-    end 
-
+    end
+      coordinates_array
   end
 
   def compter_places_ships(ship, coordinates)
+    board = Board.new
+    game = Game.new('player1')
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    loop do
+      if board.valid_placement?(cruiser, random_coordinates)
+        board.place(cruiser, random_coordinates)
+        break 
+      end
+    end
+
+    binding.pry
+
 
 
   end
 
   def game_end
+
 
   end
 
