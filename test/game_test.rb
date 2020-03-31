@@ -21,18 +21,54 @@ class GameTest < Minitest::Test
     game = Game.new('player1')
 
     assert_equal 'player1', game.player
-    assert_equal [], game.coordinates
+
   end
 
+  def test_it_can_place_cruiser_randomly
 
-  def test_it_can_create_coordinates
-    skip
+    game = Game.new('player1')
     board = Board.new
-    board.create_coordinates_array
+    cruiser = Ship.new("Cruiser", 3)
+    random_coordiantes = game.random_coordinates_cruiser
 
-    assert_equal ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"], board.create_coordinates_array
+    assert_equal true, board.valid_placement?(cruiser, random_coordiantes)
   end
 
+  def test_it_can_place_the_cruiser
 
+    game = Game.new('player1')
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    random_coordiantes = game.random_coordinates_cruiser
+
+    assert_equal true, game.place_cruiser
+  end
+
+  def test_it_can_verify_sub_coordinates
+
+    game = Game.new('player1')
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    random_coordiantes = game.random_coordinates_cruiser
+    game.place_cruiser
+    sub_random_coordinates = game.random_coordinates_submarine
+
+
+    assert_equal true, game.sub_coordinates_are_valid
+  end
+
+  def test_it_can_place_sub
+    
+    game = Game.new('player1')
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    random_coordiantes = game.random_coordinates_cruiser
+    game.place_cruiser
+    sub_random_coordinates = game.random_coordinates_submarine
+    game.sub_coordinates_are_valid
+
+    assert_equal true, game.place_submarine
+  end
 
 end
