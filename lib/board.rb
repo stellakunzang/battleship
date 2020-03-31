@@ -10,21 +10,19 @@ class Board
     cells_hash = {}
     x_axis = ("A".."D").to_a
     y_axis = ("1".."4").to_a
-
     coordinates = []
     x_axis.each do |x|
       y_axis.each do |y|
         coordinates << (x + y)
       end
     end
-
     coordinates.each do |coordinate|
       cell = Cell.new(coordinate)
+      puts "I AM BUILDING A NEW CELL!"
         cells_hash[coordinate] = cell
     end
     cells_hash
   end
-
   def valid_coordinate?(coordinate)
     if @cells[coordinate] == nil
       false
@@ -32,18 +30,14 @@ class Board
       true
     end
   end
-
   def valid_placement?(ship, coordinates)
     ship.length == coordinates.length && valid_coordinate_array?(coordinates) == true && cells_empty?(coordinates) == true
   end
-
-
   def cells_empty?(coordinates)
     coordinates.all? do |coordinate|
       @cells[coordinate].empty?
     end
   end
-
   def valid_coordinate_array?(coordinates)
     if collect_letters(coordinates).uniq.length == 1 && consecutive_numbers?(coordinates) == true
       true
@@ -53,7 +47,6 @@ class Board
       false
     end
   end
-
   def collect_letters(coordinates)
     letters = []
     coordinates.each do |coordinate|
@@ -61,7 +54,6 @@ class Board
     end
     letters
   end
-
   def collect_numbers(coordinates)
     numbers = []
     coordinates.each do |coordinate|
@@ -69,21 +61,17 @@ class Board
     end
     numbers
   end
-
   def consecutive_letters?(coordinates)
     (collect_letters(coordinates)[0].ord..collect_letters(coordinates)[-1].ord).to_a == collect_letters(coordinates).map { |letter| letter.ord }
   end
-
   def consecutive_numbers?(coordinates)
     (collect_numbers(coordinates)[0]..collect_numbers(coordinates)[-1]).to_a == collect_numbers(coordinates)
   end
-
   def place(ship, coordinates)
     coordinates.each do |coordinate|
       @cells[coordinate].place_ship(ship)
     end
   end
-
   def render(show = false)
     if show == false
       puts "  1 2 3 4 \n" +
