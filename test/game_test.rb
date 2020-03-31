@@ -40,7 +40,7 @@ class GameTest < Minitest::Test
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     random_coordiantes = game.random_coordinates_cruiser
-
+    # put assert_equal true since im not sure how to test randomness 
     assert_equal true, game.place_cruiser
   end
 
@@ -58,7 +58,7 @@ class GameTest < Minitest::Test
   end
 
   def test_it_can_place_sub
-    
+
     game = Game.new('player1')
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
@@ -67,7 +67,7 @@ class GameTest < Minitest::Test
     game.place_cruiser
     sub_random_coordinates = game.random_coordinates_submarine
     game.sub_coordinates_are_valid
-
+    # put assert_equal true since im not sure how to test randomness
     assert_equal true, game.place_submarine
   end
 
