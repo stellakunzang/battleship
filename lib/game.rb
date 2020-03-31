@@ -11,11 +11,26 @@ require './lib/ship'
   def initialize(player)
     @player = player
     @computer_board = Board.new
+    @player_board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
 
   end
 
+  def user_places_ships(ship, coordinates)
+    loop do
+      p "which ship would you like to place? => "
+        ship = gets.chomp
+      p "enter coordinates => "
+        coordinates = gets.chomp
+      if @player_board.valid_placement?(ship, coordinates)
+          @player_board.place(ship, coordinates)
+          break
+      else
+        p "Those are invalid cooridnates. Please try again!"
+      end
+    end
+  end
 
   def random_coordinates_cruiser
     random_number = rand(1..10)
@@ -118,18 +133,18 @@ require './lib/ship'
       else
         counter += 1
       end
+
     end
-    #if im correct this gets returned when the method lands on correct coordiantes
+    #if im correct this gets returned when the method lands on valid coordiantes
     true
   end
 
   def place_submarine
-    #this will probably have different coordiants that teste in the method above.
-    #this wont work since its not a method for Board class. Not sure what to call here.
+      #how can we test this?
     if sub_coordinates_are_valid == true
         @computer_board.place(submarine, random_coordinates_submarine)
-        binding.pry
     end
+
   end
 
 
