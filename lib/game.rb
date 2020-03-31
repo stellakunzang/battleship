@@ -124,11 +124,11 @@ require './lib/ship'
   end
 
   def place_submarine
-    binding.pry
     #this will probably have different coordiants that teste in the method above.
     #this wont work since its not a method for Board class. Not sure what to call here.
-    if @computer_board.sub_coordinates_are_valid == true
+    if sub_coordinates_are_valid == true
         @computer_board.place(submarine, random_coordinates_submarine)
+        binding.pry
     end
   end
 
