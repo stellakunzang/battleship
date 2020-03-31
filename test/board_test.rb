@@ -87,23 +87,24 @@ class BoardTest < Minitest::Test
   def test_it_can_place_ships
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
+    board.place(cruiser, ["A1", "A2", "A3"])
     cell1 = board.cells["A1"]
     cell2 = board.cells["A2"]
     cell3 = board.cells["A3"]
-    board.place(cruiser, [cell1, cell2, cell3])
 
     assert_equal cruiser, cell1.ship
     assert_equal cruiser, cell2.ship
-    assert_equal cruiser, cell2.ship
+    assert_equal cruiser, cell3.ship
+    assert_equal cell1.ship, cell2.ship
   end
 
   def test_it_can_invalidate_overlapping_ships
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
+    board.place(cruiser, ["A1", "A2", "A3"])
     cell1 = board.cells["A1"]
     cell2 = board.cells["A2"]
     cell3 = board.cells["A3"]
-    board.place(cruiser, [cell1, cell2, cell3])
     submarine = Ship.new("Submarine", 2)
 
     assert_equal false, board.valid_placement?(submarine, ["A3, B3"])
@@ -123,11 +124,11 @@ class BoardTest < Minitest::Test
   def test_it_can_render_show_true
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
+    board.place(cruiser, ["A1", "A2", "A3"])
     cell1 = board.cells["A1"]
     cell2 = board.cells["A2"]
     cell3 = board.cells["A3"]
     cell4 = board.cells["A4"]
-    board.place(cruiser, [cell1, cell2, cell3])
 
     assert_equal "S", cell1.render(true)
     assert_equal ".", cell4.render(true)
@@ -136,10 +137,10 @@ class BoardTest < Minitest::Test
   def test_it_can_render_hits_and_misses
     board = Board.new
     cruiser = Ship.new("Cruiser", 2)
+    board.place(cruiser, ["A1", "A2"])
     cell1 = board.cells["A1"]
     cell2 = board.cells["A2"]
     cell3 = board.cells["A3"]
-    board.place(cruiser, [cell1, cell2])
     cell2.fire_upon
     cell3.fire_upon
 
@@ -151,9 +152,9 @@ class BoardTest < Minitest::Test
   def test_it_can_render_sunken_ships
     board = Board.new
     cruiser = Ship.new("Cruiser", 2)
+    board.place(cruiser, ["A1", "A2"])
     cell1 = board.cells["A1"]
     cell2 = board.cells["A2"]
-    board.place(cruiser, [cell1, cell2])
     cell1.fire_upon
     cell2.fire_upon
 
