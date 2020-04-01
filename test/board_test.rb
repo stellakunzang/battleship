@@ -94,7 +94,7 @@ class BoardTest < Minitest::Test
 
     assert_equal cruiser, cell1.ship
     assert_equal cruiser, cell2.ship
-    assert_equal cruiser, cell2.ship
+    assert_equal cruiser, cell3.ship
   end
 
   def test_it_can_invalidate_overlapping_ships
