@@ -38,7 +38,7 @@ class ComputerTest < Minitest::Test
     random_coordiantes = computer.random_coordinates_cruiser
     computer.place_cruiser
     sub_random_coordinates = computer.stubs(:random_coordinates_submarine).returns(["A1", "A2"])
-      
+
     assert_equal true, computer.sub_coordinates_are_valid
   end
 
