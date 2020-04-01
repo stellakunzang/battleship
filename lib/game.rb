@@ -33,7 +33,7 @@ class Game
     @player_board.render
     "Enter the squares for the Cruiser (3 spaces): "
     user_input = gets.chomp
-    coordinates = user_input.upcase.gsub(/[^\w]\s+/,'').scan(/../)
+    coordinates =(user_input.upcase.gsub(/[^\w]/,"")).scan(/../)
     validate_user_placement_cruiser(cruiser, coordinates)
   end
 
@@ -43,12 +43,12 @@ class Game
       @player_board.render(true)
       puts "Enter the squares for the Submarine (2 spaces): "
       user_input = gets.chomp
-      coordinates = user_input.upcase.gsub(/[^\w]\s+/,'').scan(/../)
+      coordinates = (user_input.upcase.gsub(/[^\w]/,"")).scan(/../)
       validate_user_placement_submarine(submarine, coordinates)
     else
       puts "Those are invalid coordiantes. Please try again: "
       user_input = gets.chomp
-      coordinates = user_input.upcase.gsub(/[^\w]\s+/,'').scan(/../)
+      coordinates = (user_input.upcase.gsub(/[^\w]/,"")).scan(/../)
       validate_user_placement_cruiser(cruiser, coordinates)
     end
   end
@@ -61,7 +61,7 @@ class Game
     else
       puts "Those are invalid coordiantes. Please try again: "
       user_input = gets.chomp
-      coordinates = user_input.upcase.gsub(/[^\w]\s+/,'').scan(/../)
+      coordinates = (user_input.upcase.gsub(/[^\w]/,"")).scan(/../)
       validate_user_placement_submarine(submarine, coordinates)
     end
   end
@@ -120,8 +120,10 @@ class Game
   def end_game?
     if @cruiser.sunk? == true && @submarine.sunk? == true
       puts "I won!"
+      main_menu
     elsif computer.cruiser.sunk? == true && computer.submarine.sunk? == true
       puts "You won!"
+      main_menu
     else
       commence_player_turn
     end

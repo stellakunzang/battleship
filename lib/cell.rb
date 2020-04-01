@@ -33,23 +33,30 @@ class Cell
     @fired_upon
   end
 
-  def render(show = false)
-    if @fired_upon == false
-      if show == true && empty? == false
-        "S"
-      else
-        "."
-      end
-    elsif @fired_upon == true
-      if @ship = ship
-        if ship.length > ship.health && ship.sunk? == false
-          "H"
-        elsif ship.sunk? == true
-          "X"
-        end
-      else
-        "M"
-      end
+  def render_empty(show)
+    if show == true && empty? == false
+      "S"
+    else
+      "."
     end
   end
+
+  def render_hit_sunk
+    if ship.length > ship.health && ship.sunk? == false
+      "H"
+    elsif ship.sunk? == true
+      "X"
+    end
+  end
+
+  def render(show = false)
+    if @fired_upon == false
+      render_empty(show)
+    elsif @fired_upon == true && @ship = ship
+      render_hit_sunk
+    else
+      "M"
+    end
+  end
+
 end
