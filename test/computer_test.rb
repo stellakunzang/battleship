@@ -1,11 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'mocha/minitest'
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/game'
 require './lib/computer'
-require 'mocha/minitest'
 require 'pry'
 
 class ComputerTest < Minitest::Test
@@ -24,11 +24,14 @@ class ComputerTest < Minitest::Test
   end
 
   def test_it_can_place_the_cruiser
-    skip
     computer = Computer.new
-    random_coordiantes = computer.random_coordinates_cruiser
-    # put assert_equal true since im not sure how to test randomness
-    assert_equal true, computer.place_cruiser
+    computer.stubs(:random_coordinates_cruiser).returns(["A1", "A2", "A3"])
+
+    assert_equal ["A1", "A2", "A3"], computer.place_cruiser
+#     random_coordiantes = computer.random_coordinates_cruiser
+#     # put assert_equal true since im not sure how to test randomness
+#     assert_equal true, computer.place_cruiser
+
   end
 
   def test_it_can_verify_sub_coordinates
@@ -41,19 +44,25 @@ class ComputerTest < Minitest::Test
   end
 
   def test_it_can_place_sub
-    skip
+
     computer = Computer.new
     random_coordiantes = computer.random_coordinates_cruiser
     computer.place_cruiser
-    sub_random_coordinates = computer.random_coordinates_submarine
+    sub_random_coordinates = computer.stubs(:random_coordinates_submarine).returns(["A1", "A2"])
     computer.sub_coordinates_are_valid
-    # put assert_equal true since im not sure how to test randomness
-    assert_equal true, computer.place_submarine
+
+    assert_equal ["A1", "A2"], computer.place_submarine
+
+   
+#     sub_random_coordinates = computer.random_coordinates_submarine
+#     computer.sub_coordinates_are_valid
+#     # put assert_equal true since im not sure how to test randomness
+#     assert_equal true, computer.place_submarine
+
   end
 
   def test_it_can_create_computer_targets
     computer = Computer.new
-    
     assert_equal Array, computer.computer_target_coordinates.class
     assert_equal 16, computer.computer_target_coordinates.length
   end
