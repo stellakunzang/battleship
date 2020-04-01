@@ -103,7 +103,6 @@ class Computer
   end
 
   def sub_coordinates_are_valid
-    #put counter to make sure that loop was running.
     counter = 0
     loop do
       if @board.valid_placement?(submarine, random_coordinates_submarine) == true
@@ -113,12 +112,10 @@ class Computer
       end
 
     end
-    #if im correct this gets returned when the method lands on valid coordiantes
     true
   end
 
   def place_submarine
-      #how can we test this?
     if sub_coordinates_are_valid == true
         @board.place(submarine, random_coordinates_submarine)
     end
