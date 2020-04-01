@@ -53,7 +53,7 @@ class ComputerTest < Minitest::Test
 
   def test_it_can_create_computer_targets
     computer = Computer.new
-    
+    # 
     assert_equal Array, computer.computer_target_coordinates.class
     assert_equal 16, computer.computer_target_coordinates.length
   end
