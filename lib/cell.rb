@@ -28,6 +28,11 @@ class Cell
       @fired_upon = true
     end
   end
+
+  def fired_upon?
+    @fired_upon
+  end
+
   def render(show = false)
     if @fired_upon == false
       if show == true && empty? == false
