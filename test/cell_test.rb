@@ -7,27 +7,22 @@ require "pry"
 class CellTest < Minitest::Test
 
   def test_it_exists
-
     cell = Cell.new("B2")
-
     assert_instance_of Cell, cell
   end
 
   def test_it_has_attributes
     cell = Cell.new("B2")
-
     assert_equal "B2", cell.coordinate
   end
 
   def test_it_can_detect_empty_cell
     cell = Cell.new("B4")
-
     assert_equal true, cell.empty?
   end
 
   def test_it_can_detect_no_ship_on_empty_cell
     cell = Cell.new("B2")
-
     assert_nil cell.ship
   end
 
@@ -57,7 +52,6 @@ class CellTest < Minitest::Test
 
     assert_equal ".", cell.render
     cell.fire_upon
-
     assert_equal "H", cell.render
     cell.fire_upon
     cell.fire_upon
@@ -73,7 +67,6 @@ class CellTest < Minitest::Test
 
     assert_equal "H", cell1.render
     cell2.fire_upon
-
     assert_equal "M", cell2.render
   end
 
@@ -84,7 +77,6 @@ class CellTest < Minitest::Test
 
     assert_equal ".", cell.render
     cell.fire_upon
-
     assert_equal "H", cell.render
     cell.fire_upon
     cell.fire_upon
