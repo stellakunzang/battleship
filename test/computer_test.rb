@@ -11,22 +11,26 @@ require 'pry'
 class ComputerTest < Minitest::Test
 
   def test_it_exists
-    
     computer = Computer.new
 
     assert_instance_of Computer, computer
   end
 
   def test_it_can_place_cruiser_randomly
-
     computer = Computer.new
     random_coordiantes = computer.random_coordinates_cruiser
 
     assert_equal true, computer.board.valid_placement?(computer.cruiser, random_coordiantes)
   end
 
-  def test_it_can_place_the_cruiser
+  def test_it_can_place_sub_randomly
+    computer = Computer.new
+    random_coordiantes = computer.random_coordinates_submarine
 
+    assert_equal true, computer.board.valid_placement?(computer.submarine, random_coordiantes)
+  end
+
+  def test_it_can_place_the_cruiser
     computer = Computer.new
     computer.stubs(:random_coordinates_cruiser).returns(["A1", "A2", "A3"])
 
@@ -34,7 +38,6 @@ class ComputerTest < Minitest::Test
   end
 
   def test_it_can_verify_sub_coordinates
-
     computer = Computer.new
     cruiser_random_coordinates = computer.stubs(:random_coordinates_cruiser).returns(["B1", "B2", "B3"])
     computer.place_cruiser
@@ -44,7 +47,6 @@ class ComputerTest < Minitest::Test
   end
 
   def test_it_can_place_sub
-
     computer = Computer.new
     cruiser_random_coordinates = computer.stubs(:random_coordinates_cruiser).returns(["B1", "B2", "B3"])
     computer.place_cruiser
@@ -56,7 +58,6 @@ class ComputerTest < Minitest::Test
 
 
   def test_it_can_create_computer_targets
-
     computer = Computer.new
 
     assert_equal Array, computer.computer_target_coordinates.class
