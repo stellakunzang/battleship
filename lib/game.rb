@@ -120,8 +120,10 @@ class Game
   def end_game?
     if @cruiser.sunk? == true && @submarine.sunk? == true
       puts "I won!"
+      main_menu
     elsif computer.cruiser.sunk? == true && computer.submarine.sunk? == true
       puts "You won!"
+      main_menu 
     else
       commence_player_turn
     end
